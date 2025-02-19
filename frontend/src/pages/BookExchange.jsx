@@ -43,16 +43,16 @@ const BookExchange = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6 text-center">Book Exchange Request</h1>
-      <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <div className="form-group">
-            <label className="block text-gray-700 mb-2">Number of Books to Exchange</label>
+    <div className="container mx-auto p-6 bg-gradient-to-r from-green-50 to-blue-50">
+      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Book Exchange Request</h1>
+      <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-8">
+        <div className="bg-white p-8 rounded-xl shadow-xl">
+          <div className="form-group mb-6">
+            <label className="block text-lg font-medium text-gray-700 mb-2">Number of Books to Exchange</label>
             <select
               value={numBooks}
               onChange={handleNumBooksChange}
-              className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-indigo-400 transition duration-200"
             >
               {[1, 2, 3, 4, 5].map((num) => (
                 <option key={num} value={num}>
@@ -62,39 +62,43 @@ const BookExchange = () => {
             </select>
           </div>
 
-          <div className="space-y-6 mt-8">
+          <div className="space-y-8">
+            {/* Wanted Books Section */}
             <div className="space-y-4">
-              <h2 className="text-lg font-semibold text-gray-800">Books You Want</h2>
+              <h2 className="text-xl font-semibold text-gray-800">Books You Want</h2>
               {wantedBooks.map((book, index) => (
-                <div key={index} className="space-y-2 border p-4 rounded-lg">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-600">ISBN</label>
-                    <input
-                      type="text"
-                      value={book.isbn}
-                      onChange={(e) => handleBookChange(setWantedBooks, index, "isbn", e.target.value)}
-                      className="w-full p-2 border rounded-md"
-                      required
-                    />
-                  </div>
+                <div
+                  key={index}
+                  className="p-6 rounded-xl bg-gradient-to-r from-green-100 to-green-200 shadow-lg transform transition-all hover:scale-105"
+                >
+                  <label className="block text-sm font-medium text-gray-600 mb-2">ISBN</label>
+                  <input
+                    type="text"
+                    value={book.isbn}
+                    onChange={(e) => handleBookChange(setWantedBooks, index, "isbn", e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-400 transition duration-200"
+                    required
+                  />
                 </div>
               ))}
             </div>
 
+            {/* Given Books Section */}
             <div className="space-y-4">
-              <h2 className="text-lg font-semibold text-gray-800">Books You Offer</h2>
+              <h2 className="text-xl font-semibold text-gray-800">Books You Offer</h2>
               {givenBooks.map((book, index) => (
-                <div key={index} className="space-y-2 border p-4 rounded-lg">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-600">ISBN</label>
-                    <input
-                      type="text"
-                      value={book.isbn}
-                      onChange={(e) => handleBookChange(setGivenBooks, index, "isbn", e.target.value)}
-                      className="w-full p-2 border rounded-md"
-                      required
-                    />
-                  </div>
+                <div
+                  key={index}
+                  className="p-6 rounded-xl bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg transform transition-all hover:scale-105"
+                >
+                  <label className="block text-sm font-medium text-gray-600 mb-2">ISBN</label>
+                  <input
+                    type="text"
+                    value={book.isbn}
+                    onChange={(e) => handleBookChange(setGivenBooks, index, "isbn", e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 transition duration-200"
+                    required
+                  />
                 </div>
               ))}
             </div>
@@ -102,14 +106,15 @@ const BookExchange = () => {
 
           <button
             type="submit"
-            className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+            className="w-full mt-8 bg-gradient-to-r from-indigo-400 to-blue-500 hover:from-indigo-500 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
           >
             Submit Exchange Request
           </button>
 
+          {/* Success/Failure Message */}
           {message && (
             <div
-              className={`mt-4 p-3 rounded-lg text-center ${
+              className={`mt-6 p-4 rounded-lg text-center ${
                 message.includes("success") ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
               }`}
             >
