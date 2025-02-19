@@ -44,64 +44,71 @@ const Reviews = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Reviews</h1>
-      {error && <p className="text-red-600 mb-4">{error}</p>}
-      {success && <p className="text-green-600 mb-4">{success}</p>}
+    <div className="min-h-screen bg-gradient-to-r from-teal-50 to-pink-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-xl">
+        <h1 className="text-3xl font-bold text-gray-900 text-center mb-6">Reviews</h1>
 
-      {/* Review Submission Form */}
-      <form onSubmit={handleSubmit} className="mb-4 bg-gray-100 p-4 rounded-lg shadow">
-        <div className="space-y-3">
-          <input
-            type="text"
-            value={newReview.isbn}
-            onChange={(e) => setNewReview({ ...newReview, isbn: e.target.value })}
-            placeholder="Enter ISBN Number"
-            className="w-full p-2 border border-gray-300 rounded"
-            required
-          />
-          <textarea
-            value={newReview.review}
-            onChange={(e) => setNewReview({ ...newReview, review: e.target.value })}
-            placeholder="Write your review..."
-            className="w-full p-2 border border-gray-300 rounded"
-            required
-          />
-          <select
-            value={newReview.rating}
-            onChange={(e) => setNewReview({ ...newReview, rating: parseInt(e.target.value) })}
-            className="w-full p-2 border border-gray-300 rounded"
-          >
-            {[1, 2, 3, 4, 5].map(num => (
-              <option key={num} value={num}>{num} Stars</option>
-            ))}
-          </select>
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >
-            Submit Review
-          </button>
-        </div>
-      </form>
-
-      {/* Display Reviews */}
-      <div className="space-y-4">
-        {reviews.length > 0 ? (
-          reviews.map(review => (
-            <div key={review._id} className="p-4 border border-gray-300 rounded">
-              <p className="font-bold">{review.username}</p>
-              <p className="text-gray-600">ISBN: {review.isbn}</p>
-              <p className="mt-2">{review.review}</p>
-              <p className="mt-1">Rating: {'⭐'.repeat(review.rating)}</p>
-              <p className="text-sm text-gray-500 mt-2">
-                {new Date(review.created_at).toLocaleDateString()}
-              </p>
-            </div>
-          ))
-        ) : (
-          <p className="text-gray-600">No reviews available.</p>
+        {error && (
+          <p className="text-red-600 text-center mb-4">{error}</p>
         )}
+        {success && (
+          <p className="text-green-600 text-center mb-4">{success}</p>
+        )}
+
+        {/* Review Submission Form */}
+        <form onSubmit={handleSubmit} className="space-y-4 mb-8 bg-gray-100 p-6 rounded-lg shadow">
+          <div className="space-y-3">
+            <input
+              type="text"
+              value={newReview.isbn}
+              onChange={(e) => setNewReview({ ...newReview, isbn: e.target.value })}
+              placeholder="Enter ISBN Number"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+              required
+            />
+            <textarea
+              value={newReview.review}
+              onChange={(e) => setNewReview({ ...newReview, review: e.target.value })}
+              placeholder="Write your review..."
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+              required
+            />
+            <select
+              value={newReview.rating}
+              onChange={(e) => setNewReview({ ...newReview, rating: parseInt(e.target.value) })}
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            >
+              {[1, 2, 3, 4, 5].map(num => (
+                <option key={num} value={num}>{num} Stars</option>
+              ))}
+            </select>
+            <button
+              type="submit"
+              className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all"
+            >
+              Submit Review
+            </button>
+          </div>
+        </form>
+
+        {/* Display Reviews */}
+        <div className="space-y-6">
+          {reviews.length > 0 ? (
+            reviews.map((review) => (
+              <div key={review._id} className="p-6 bg-white border border-gray-300 rounded-lg shadow-sm">
+                <p className="font-semibold">{review.username}</p>
+                <p className="text-gray-600">ISBN: {review.isbn}</p>
+                <p className="mt-2">{review.review}</p>
+                <p className="mt-2">Rating: {'⭐'.repeat(review.rating)}</p>
+                <p className="text-sm text-gray-500 mt-2">
+                  {new Date(review.created_at).toLocaleDateString()}
+                </p>
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-600">No reviews available.</p>
+          )}
+        </div>
       </div>
     </div>
   );
