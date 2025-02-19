@@ -53,18 +53,14 @@ const BookSearch = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-r from-green-50 to-blue-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">
-            Discover Your Next Read
-          </h1>
-          <p className="text-lg text-gray-600">
-            Search by ISBN to explore book details and availability
-          </p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-3">Discover Your Next Read</h1>
+          <p className="text-lg text-gray-600">Search by ISBN to explore book details and availability</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
               <input
@@ -73,13 +69,13 @@ const BookSearch = () => {
                 onChange={(e) => setQuery(e.target.value.trim())}
                 onKeyDown={handleKeyDown}
                 placeholder="Enter 10 or 13-digit ISBN (e.g., 9780439708180)"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-green-400 outline-none transition-all"
               />
             </div>
             <button
               onClick={handleSearch}
               disabled={isLoading}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-gradient-to-r from-indigo-400 to-blue-500 hover:from-indigo-500 hover:to-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <>
